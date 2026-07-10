@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { ExternalLink, Github, Database, Cpu, Brain, ArrowUpRight, FolderGit2 } from "lucide-react";
+import { Github, FolderGit2 } from "lucide-react";
+import { useLanguage } from "../contexts/LanguageContext";
 
 interface ProjectItem {
   id: string;
@@ -9,7 +10,7 @@ interface ProjectItem {
   categoryLabel: string;
   description: string;
   longDescription: string;
-  image: string; // Placeholder - replace with real project screenshot
+  image: string;
   tags: string[];
   techGroup: string;
   metrics: string;
@@ -21,10 +22,10 @@ const PROJECTS: ProjectItem[] = [
     id: "cinematch",
     title: "CineMatch AI Recommendation Engine",
     category: "backend",
-    categoryLabel: "Backend & AI",
-    description: "Django movie-recommendation platform with TMDB ingestion, user profiles, genre-based recommendations, and a DRF API. Backend split into services layer and selectors for clean separation of concerns.",
-    longDescription: "CineMatch es un sistema de recomendación de películas desarrollado en Django con DRF. Incluye ingesta de datos de TMDB, perfiles de usuario, recomendaciones basadas en géneros y una API REST completa. El backend está dividido en una capa de servicios (lógica de negocio + llamadas a terceros) y selectores para una separación limpia de responsabilidades. CI en Python 3.12/3.13 con coverage.",
-    image: "/images/projects/cinematch-placeholder.png", // TODO: Replace with real screenshot
+    categoryLabel: "cinematch",
+    description: "cinematch",
+    longDescription: "cinematch",
+    image: "/images/projects/cinematch-placeholder.png",
     tags: ["Python", "Django", "DRF", "PostgreSQL", "REST API", "CI/CD"],
     techGroup: "Backend API",
     metrics: "MIT License",
@@ -34,10 +35,10 @@ const PROJECTS: ProjectItem[] = [
     id: "tfm",
     title: "TFM: Automated Robobo with LLM (GPT-4)",
     category: "automation",
-    categoryLabel: "MSc Thesis · AI & Robotics",
-    description: "MSc thesis at Universidade da Coruña: vision-language control of a Robobo robot using GPT-4. The model interprets the robot's camera feed and decides the next action in real time.",
-    longDescription: "Proyecto de Máster en la Universidad de A Coruña: control visión-lenguaje de un robot Robobo utilizando GPT-4. El modelo interpreta la cámara del robot y decide la siguiente acción (mover, girar, hablar) en tiempo real, con despacho estructurado en JSON. Integración con OpenAI API, pipelines de imágenes en base64, configuración por variables de entorno.",
-    image: "/images/projects/tfm-placeholder.png", // TODO: Replace with real screenshot
+    categoryLabel: "tfm",
+    description: "tfm",
+    longDescription: "tfm",
+    image: "/images/projects/tfm-placeholder.png",
     tags: ["Python", "OpenAI API", "GPT-4", "Robotics", "Computer Vision", "UDC"],
     techGroup: "AI & Robotics",
     metrics: "MSc · Universidade da Coruña",
@@ -47,10 +48,10 @@ const PROJECTS: ProjectItem[] = [
     id: "fittracker",
     title: "FitTrack Pro",
     category: "automation",
-    categoryLabel: "Full-Stack · AI & LLM Integration",
-    description: "Full-stack platform for generating personalized workout routines and nutrition plans using LLM integration, with JWT authentication, progress tracking, and a modern React interface.",
-    longDescription: "Plataforma full-stack para generar rutinas de entrenamiento y planes de alimentación personalizados utilizando integración con LLMs. Incluye autenticación JWT, seguimiento de progreso físico, generación de rutinas adaptadas al objetivo del usuario, planes nutricionales y panel frontend con Material UI. Backend en Django 6 con DRF, preparado para PostgreSQL en producción.",
-    image: "/images/projects/fittracker-placeholder.png", // TODO: Replace with real screenshot
+    categoryLabel: "fittracker",
+    description: "fittracker",
+    longDescription: "fittracker",
+    image: "/images/projects/fittracker-placeholder.png",
     tags: ["Python", "Django", "DRF", "React", "JWT", "LLM", "PostgreSQL"],
     techGroup: "Full-Stack & AI",
     metrics: "Frontend + Backend + LLM",
@@ -60,10 +61,10 @@ const PROJECTS: ProjectItem[] = [
     id: "receipt-tracker",
     title: "Receipt Tracker",
     category: "backend",
-    categoryLabel: "Backend · Django & OCR",
-    description: "Django web app for tracking and splitting receipt expenses between friends, with OCR support for automatic receipt scanning and product categorization.",
-    longDescription: "Aplicación web Django para rastrear y dividir gastos de recibos entre amigos. Incluye gestión de recibos y productos, división proporcional de gastos, categorización de productos, visualización de totales por usuario, soporte para múltiples tiendas, OCR con Tesseract para escaneo automático de recibos, y despliegue con Docker y Gunicorn.",
-    image: "/images/projects/receipt-tracker-placeholder.png", // TODO: Replace with real screenshot
+    categoryLabel: "receipt",
+    description: "receipt",
+    longDescription: "receipt",
+    image: "/images/projects/receipt-tracker-placeholder.png",
     tags: ["Python", "Django", "PostgreSQL", "OCR", "Docker", "Bootstrap"],
     techGroup: "Backend & DevOps",
     metrics: "Docker + PostgreSQL",
@@ -72,10 +73,21 @@ const PROJECTS: ProjectItem[] = [
 ];
 
 export default function Projects() {
+  const { t } = useLanguage();
   const [filter, setFilter] = useState<"all" | "ai" | "backend" | "automation">("all");
   const [activeDetails, setActiveDetails] = useState<string | null>(null);
 
   const filteredProjects = PROJECTS.filter(p => filter === "all" || p.category === filter);
+
+  const getProjectTranslation = (id: string, field: "categoryLabel" | "description" | "longDescription") => {
+    const translations: Record<string, Record<string, string>> = {
+      cinematch: t.projects.cinematch,
+      tfm: t.projects.tfm,
+      fittracker: t.projects.fittracker,
+      "receipt-tracker": t.projects.receipt,
+    };
+    return translations[id]?.[field] || "";
+  };
 
   return (
     <section id="projects" className="py-24 px-6 relative border-b border-white/5 bg-[#050505]">
@@ -88,23 +100,23 @@ export default function Projects() {
         <div className="space-y-4">
           <div className="p-1 bg-gradient-to-br from-blue-500/10 to-indigo-500/10 rounded-2xl w-fit">
             <div className="inline-block px-3 py-1 bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] font-bold uppercase tracking-[0.3em] rounded w-fit">
-              <FolderGit2 className="w-3.5 h-3.5 inline mr-1" /> Portafolio de Código
+              <FolderGit2 className="w-3.5 h-3.5 inline mr-1" /> {t.projects.title}
             </div>
           </div>
           <h2 className="text-3xl sm:text-4xl font-sans font-extrabold tracking-tighter text-white">
-            Proyectos Destacados
+            {t.projects.title}
           </h2>
           <p className="text-slate-400 max-w-2xl font-sans leading-relaxed text-sm sm:text-base">
-            Casos prácticos e implementaciones reales en Django, DRF, IA y automatización. Todos los repositorios son públicos en GitHub.
+            {t.projects.subtitle}
           </p>
         </div>
 
         {/* Filter Navigation */}
         <div className="flex flex-wrap gap-2.5 pb-4 border-b border-white/5">
           {[
-            { id: "all", label: "Todos los proyectos" },
-            { id: "backend", label: "Backend & Full-Stack" },
-            { id: "automation", label: "AI & Robotics" }
+            { id: "all", label: t.projects.filterAll },
+            { id: "backend", label: t.projects.filterBackend },
+            { id: "automation", label: t.projects.filterAI }
           ].map(tab => (
             <button
               key={tab.id}
@@ -143,12 +155,11 @@ export default function Projects() {
                     alt={project.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
                     onError={(e) => {
-                      // Fallback to gradient placeholder if image fails to load
                       const target = e.target as HTMLImageElement;
                       target.style.display = 'none';
                     }}
                   />
-                  {/* Fallback gradient overlay (visible when no image) */}
+                  {/* Fallback gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-indigo-500/10 flex items-center justify-center">
                     <div className="text-center space-y-1 px-4">
                       <div className="text-[9px] font-mono uppercase text-slate-500 tracking-wider">
@@ -165,10 +176,10 @@ export default function Projects() {
                 <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
                   <div className="space-y-2">
                     <span className="text-[10px] text-slate-500 uppercase tracking-widest font-mono">
-                      {project.categoryLabel}
+                      {getProjectTranslation(project.id, "categoryLabel")}
                     </span>
                     <p className="text-xs text-slate-400 font-sans leading-relaxed line-clamp-3">
-                      {project.description}
+                      {getProjectTranslation(project.id, "description")}
                     </p>
                   </div>
 
@@ -187,7 +198,7 @@ export default function Projects() {
                       onClick={() => setActiveDetails(activeDetails === project.id ? null : project.id)}
                       className="text-xs font-mono text-cyan-400 hover:text-cyan-300 transition flex items-center gap-1 cursor-pointer focus:outline-none"
                     >
-                      <span>{activeDetails === project.id ? "Ocultar detalles ▲" : "Saber más ▼"}</span>
+                      <span>{activeDetails === project.id ? t.projects.hideDetails : t.projects.learnMore}</span>
                     </button>
 
                     <a
@@ -195,7 +206,7 @@ export default function Projects() {
                       target="_blank"
                       rel="noreferrer"
                       className="p-1.5 rounded-lg bg-[#111111] hover:bg-slate-800 text-slate-450 hover:text-white transition-all border border-white/5 shrink-0 flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider px-2.5"
-                      title="Ver Repositorio"
+                      title="GitHub"
                     >
                       <Github className="w-3.5 h-3.5" />
                       <span>GitHub</span>
@@ -212,12 +223,12 @@ export default function Projects() {
                       exit={{ opacity: 0, height: 0 }}
                       className="bg-slate-950/95 border-t border-white/5 p-5 font-sans space-y-3"
                     >
-                      <h4 className="text-xs font-mono text-cyan-400 uppercase tracking-widest">Información Detallada:</h4>
+                      <h4 className="text-xs font-mono text-cyan-400 uppercase tracking-widest">{t.projects.details}</h4>
                       <p className="text-xs text-slate-300 leading-relaxed">
-                        {project.longDescription}
+                        {getProjectTranslation(project.id, "longDescription")}
                       </p>
                       <div className="bg-slate-900/40 border border-white/5 p-2 rounded text-[11px] font-mono text-slate-400">
-                        <strong className="text-white">Repositorio:</strong> {project.githubUrl}
+                        <strong className="text-white">{t.projects.repository}</strong> {project.githubUrl}
                       </div>
                     </motion.div>
                   )}

@@ -1,11 +1,14 @@
 import { motion } from "motion/react";
-import { Terminal, Mail, Phone, MapPin, Download, CheckCircle, Linkedin, Github } from "lucide-react";
+import { Terminal, Mail, Phone, MapPin, CheckCircle, Linkedin, Github } from "lucide-react";
+import { useLanguage } from "../contexts/LanguageContext";
 
 interface HeroProps {
   onExploreTech: () => void;
 }
 
 export default function Hero({ onExploreTech }: HeroProps) {
+  const { t } = useLanguage();
+
   const handleCopyEmail = () => {
     navigator.clipboard.writeText("fredyhdezv31@gmail.com");
     alert("¡Email copiado al portapapeles!");
@@ -28,7 +31,7 @@ export default function Hero({ onExploreTech }: HeroProps) {
               className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-cyan-400 text-xs font-mono"
             >
               <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-              <span>Disponible para Proyectos / Contrataciones Estables</span>
+              <span>{t.hero.available}</span>
             </motion.div>
 
             <div className="space-y-4">
@@ -38,7 +41,7 @@ export default function Hero({ onExploreTech }: HeroProps) {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="text-4xl sm:text-6xl font-sans font-extrabold tracking-tight text-white leading-none"
               >
-                Fredy Hernández
+                {t.hero.name}
               </motion.h1>
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
@@ -46,7 +49,7 @@ export default function Hero({ onExploreTech }: HeroProps) {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="text-xl sm:text-2xl font-mono text-cyan-400 font-medium"
               >
-                Backend Developer · Python · Django · FastAPI
+                {t.hero.subtitle}
               </motion.h2>
             </div>
 
@@ -55,9 +58,8 @@ export default function Hero({ onExploreTech }: HeroProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               className="text-slate-400 text-base sm:text-lg max-w-2xl leading-relaxed font-sans"
-            >
-              Backend engineer specialising in <strong className="text-white">Python</strong> and <strong className="text-white">Django</strong>, with hands-on experience building production-grade APIs with <strong className="text-white">Django REST Framework</strong> and <strong className="text-white">FastAPI</strong>. Currently expanding into <strong className="text-white">AI/LLM integration</strong> for applied products.
-            </motion.p>
+              dangerouslySetInnerHTML={{ __html: t.hero.description }}
+            />
 
             {/* Quick Stats Grid */}
             <motion.div
@@ -67,16 +69,16 @@ export default function Hero({ onExploreTech }: HeroProps) {
               className="grid grid-cols-2 sm:grid-cols-3 gap-4 py-4 border-y border-slate-900 font-mono"
             >
               <div className="space-y-1">
-                <span className="text-xs text-slate-500 block">EXPERIENCIA</span>
-                <span className="text-lg font-bold text-white">3+ Años</span>
+                <span className="text-xs text-slate-500 block">{t.hero.experience}</span>
+                <span className="text-lg font-bold text-white">{t.hero.experienceValue}</span>
               </div>
               <div className="space-y-1">
-                <span className="text-xs text-slate-500 block">ESPECIALIDAD</span>
-                <span className="text-lg font-bold text-teal-400">Django & REST APIs</span>
+                <span className="text-xs text-slate-500 block">{t.hero.specialty}</span>
+                <span className="text-lg font-bold text-teal-400">{t.hero.specialtyValue}</span>
               </div>
               <div className="space-y-1 col-span-2 sm:col-span-1">
-                <span className="text-xs text-slate-500 block">UBICACIÓN / REMOTO</span>
-                <span className="text-lg font-bold text-indigo-400">España / 100% Remoto</span>
+                <span className="text-xs text-slate-500 block">{t.hero.location}</span>
+                <span className="text-lg font-bold text-indigo-400">{t.hero.locationValue}</span>
               </div>
             </motion.div>
 
@@ -92,7 +94,7 @@ export default function Hero({ onExploreTech }: HeroProps) {
                 className="px-6 py-3.5 bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-white rounded-lg font-medium transition shadow-lg shadow-cyan-500/20 flex items-center gap-2 group cursor-pointer"
               >
                 <Terminal className="w-5 h-5 group-hover:rotate-12 transition-transform" />
-                <span>Ver Stack & Tecnologías</span>
+                <span>{t.hero.viewStack}</span>
               </button>
 
               <a
@@ -102,7 +104,7 @@ export default function Hero({ onExploreTech }: HeroProps) {
                 className="px-6 py-3.5 bg-slate-900 hover:bg-slate-850 border border-slate-800 text-slate-200 rounded-lg font-medium transition flex items-center gap-2 cursor-pointer"
               >
                 <Github className="w-5 h-5" />
-                <span>GitHub</span>
+                <span>{t.hero.github}</span>
               </a>
 
               <a
@@ -133,7 +135,7 @@ export default function Hero({ onExploreTech }: HeroProps) {
 
               <div className="space-y-2">
                 <h3 className="text-white text-sm font-mono block text-slate-500">&lt;contact_info&gt;</h3>
-                <h4 className="text-white font-sans font-bold text-lg">Información de Contacto</h4>
+                <h4 className="text-white font-sans font-bold text-lg">{t.hero.contactTitle}</h4>
               </div>
 
               {/* Contact item list */}
@@ -141,7 +143,7 @@ export default function Hero({ onExploreTech }: HeroProps) {
                 <div className="flex items-center gap-3 py-2 border-b border-slate-800/50">
                   <Mail className="w-4 h-4 text-cyan-400" />
                   <div className="flex-1 overflow-hidden text-ellipsis">
-                    <span className="text-xs text-slate-500 block">EMAIL</span>
+                    <span className="text-xs text-slate-500 block">{t.hero.email}</span>
                     <button
                       onClick={handleCopyEmail}
                       className="hover:text-cyan-400 transition cursor-pointer text-left focus:outline-none"
@@ -155,7 +157,7 @@ export default function Hero({ onExploreTech }: HeroProps) {
                 <div className="flex items-center gap-3 py-2 border-b border-slate-800/50">
                   <Phone className="w-4 h-4 text-teal-400" />
                   <div>
-                    <span className="text-xs text-slate-500 block">TELÉFONO</span>
+                    <span className="text-xs text-slate-500 block">{t.hero.phone}</span>
                     <a href="tel:+34674867848" className="hover:text-teal-400 transition">
                       +34 674 867 848
                     </a>
@@ -165,16 +167,16 @@ export default function Hero({ onExploreTech }: HeroProps) {
                 <div className="flex items-center gap-3 py-2 border-b border-slate-800/50">
                   <MapPin className="w-4 h-4 text-indigo-400" />
                   <div>
-                    <span className="text-xs text-slate-500 block">UBICACIÓN</span>
-                    <span>España (Trabajo 100% Remoto)</span>
+                    <span className="text-xs text-slate-500 block">{t.hero.locationLabel}</span>
+                    <span>{t.hero.locationValue}</span>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3 py-1">
                   <CheckCircle className="w-4 h-4 text-emerald-400" />
                   <div>
-                    <span className="text-xs text-slate-500 block">ESTATUS UE</span>
-                    <span>Permiso de trabajo activo en UE</span>
+                    <span className="text-xs text-slate-500 block">{t.hero.workStatus}</span>
+                    <span>{t.hero.workStatusValue}</span>
                   </div>
                 </div>
               </div>
