@@ -14,7 +14,7 @@ export const es: Translations = {
     name: "Fredy Hernández",
     subtitle: "Backend Developer · Python · Django · FastAPI",
     description:
-      'Backend engineer specialising in <strong class="text-white">Python</strong> and <strong class="text-white">Django</strong>, with hands-on experience building production-grade APIs with <strong class="text-white">Django REST Framework</strong> and <strong class="text-white">FastAPI</strong>. Currently expanding into <strong class="text-white">AI/LLM integration</strong> for applied products.',
+      'Ingeniero backend especializado en <strong class="text-white">Python</strong> y <strong class="text-white">Django</strong>, con experiencia construyendo APIs de nivel producción con <strong class="text-white">Django REST Framework</strong> y <strong class="text-white">FastAPI</strong>. Ampliando actualmente hacia la <strong class="text-white">integración de IA/LLMs</strong> para productos aplicados.',
     experience: "EXPERIENCIA",
     experienceValue: "3+ Años",
     specialty: "ESPECIALIDAD",
@@ -36,36 +36,36 @@ export const es: Translations = {
       "Casos prácticos e implementaciones reales en Django, DRF, IA y automatización. Todos los repositorios son públicos en GitHub.",
     filterAll: "Todos los proyectos",
     filterBackend: "Backend & Full-Stack",
-    filterAI: "AI & Robotics",
+    filterAI: "IA & Robótica",
     learnMore: "Saber más ▼",
     hideDetails: "Ocultar detalles ▲",
     details: "Información Detallada:",
     repository: "Repositorio:",
     cinematch: {
-      category: "Backend & AI",
+      category: "Backend & IA",
       description:
-        "Django movie-recommendation platform with TMDB ingestion, user profiles, genre-based recommendations, and a DRF API. Backend split into services layer and selectors for clean separation of concerns.",
+        "Plataforma de recomendación de películas en Django con ingesta de TMDB, perfiles de usuario, recomendaciones por género y una API DRF. Backend dividido en capa de servicios y selectores para una separación limpia de responsabilidades.",
       longDescription:
         "CineMatch es un sistema de recomendación de películas desarrollado en Django con DRF. Incluye ingesta de datos de TMDB, perfiles de usuario, recomendaciones basadas en géneros y una API REST completa. El backend está dividido en una capa de servicios (lógica de negocio + llamadas a terceros) y selectores para una separación limpia de responsabilidades. CI en Python 3.12/3.13 con coverage.",
     },
     tfm: {
-      category: "MSc Thesis · AI & Robotics",
+      category: "TFM · IA & Robótica",
       description:
-        "MSc thesis at Universidade da Coruña: vision-language control of a Robobo robot using GPT-4. The model interprets the robot's camera feed and decides the next action in real time.",
+        "Trabajo de Fin de Máster en la Universidade da Coruña: control visión-lenguaje de un robot Robobo utilizando GPT-4. El modelo interpreta la cámara del robot y decide la siguiente acción en tiempo real.",
       longDescription:
         "Proyecto de Máster en la Universidad de A Coruña: control visión-lenguaje de un robot Robobo utilizando GPT-4. El modelo interpreta la cámara del robot y decide la siguiente acción (mover, girar, hablar) en tiempo real, con despacho estructurado en JSON. Integración con OpenAI API, pipelines de imágenes en base64, configuración por variables de entorno.",
     },
     fittracker: {
-      category: "Full-Stack · AI & LLM Integration",
+      category: "Full-Stack · IA & LLM",
       description:
-        "Full-stack platform for generating personalized workout routines and nutrition plans using LLM integration, with JWT authentication, progress tracking, and a modern React interface.",
+        "Plataforma full-stack para generar rutinas de entrenamiento y planes de alimentación personalizados usando integración con LLMs, con autenticación JWT, seguimiento de progreso e interfaz moderna en React.",
       longDescription:
         "Plataforma full-stack para generar rutinas de entrenamiento y planes de alimentación personalizados utilizando integración con LLMs. Incluye autenticación JWT, seguimiento de progreso físico, generación de rutinas adaptadas al objetivo del usuario, planes nutricionales y panel frontend con Material UI. Backend en Django 6 con DRF, preparado para PostgreSQL en producción.",
     },
     receipt: {
       category: "Backend · Django & OCR",
       description:
-        "Django web app for tracking and splitting receipt expenses between friends, with OCR support for automatic receipt scanning and product categorization.",
+        "Aplicación web Django para rastrear y dividir gastos de recibos entre amigos, con soporte OCR para escaneo automático de recibos y categorización de productos.",
       longDescription:
         "Aplicación web Django para rastrear y dividir gastos de recibos entre amigos. Incluye gestión de recibos y productos, división proporcional de gastos, categorización de productos, visualización de totales por usuario, soporte para múltiples tiendas, OCR con Tesseract para escaneo automático de recibos, y despliegue con Docker y Gunicorn.",
     },
@@ -113,7 +113,7 @@ export const es: Translations = {
       html5: {
         name: "HTML5",
         details:
-          "Estructuración semántica de interfaces web, formularios accesibles y integración con frameworks CSS.",
+          "Estructuración semántica de interfaces web, formularios accesibles e integración con frameworks CSS.",
       },
       css3: {
         name: "CSS3",
@@ -133,7 +133,7 @@ export const es: Translations = {
       openai: {
         name: "OpenAI API",
         details:
-          "Integración de modelos GPT-4 y GPT-3.5 para clasificación, resúmenes automáticos de datos estructurados y llamadas a funciones (tools).",
+          "Integración de modelos GPT-4 y GPT-3.5 para clasificación, resúmenes automáticos de datos estructurados y llamadas a funciones.",
       },
       huggingface: {
         name: "Hugging Face",
@@ -183,7 +183,7 @@ export const es: Translations = {
       aws: {
         name: "AWS (Fundamentos)",
         details:
-          "Despliegue de instancias EC2, almacenamiento S3 e inicio en administración fundamental cloud.",
+          "Despliegue de instancias EC2, almacenamiento S3 e inicio en administración fundamental en la nube.",
       },
       linux: {
         name: "Entornos Linux/Unix",
@@ -267,7 +267,7 @@ export const es: Translations = {
     helpClear:
       "  clear                Limpia toda la pantalla de la consola.",
     whoamiUser: "Usuario: Fredy Hernández",
-    whoamiRole: "Rol: Python Backend Developer / AI Applications Creator",
+    whoamiRole: "Rol: Desarrollador Backend Python / Creador de Aplicaciones IA",
     whoamiSpecialty:
       "Especialidad: Django, Automatizaciones Unix, RAG pipelines, LangChain",
     whoamiLocation:
@@ -307,13 +307,13 @@ export const es: Translations = {
     apiTestPost:
       "[OK] POST /api/v1/orders-push/ -> HTTP 201 Created (0.45s)",
     apiTestMetrics:
-      "[METRICS] Sincronización automática de inventario ejecutandose con regularidad.",
+      "[METRICS] Sincronización automática de inventario ejecutándose con regularidad.",
     apiTestSavings:
       "[AHORRO] Evitando llamadas manuales: Sincronización ahorra ~8 horas/semana.",
     apiTestSuccess:
       "[SUCCESS] 4 APIs robustas testeadas en producción. Cobertura: 100%",
     unknownCommand: "Comando no reconocido: {cmd}. Escribe 'help' para ver opciones.",
-    quickDemos: "Demostraciones Automáticas en Un-Clic:",
+    quickDemos: "Demostraciones Automáticas en Un Clic:",
     runSysMonitor: "Monitoreo Unix",
     runRagPipeline: "Pipeline RAG (IA)",
     runApiTest: "Test APIs Django",
@@ -321,11 +321,11 @@ export const es: Translations = {
     inputPlaceholder:
       "Escribe 'run sys_monitor', 'whoami', 'help'...",
     execute: "Ejecutar",
-    reset: "Reset",
+    reset: "Reiniciar",
     running: "Ejecutando...",
   },
   footer: {
-    copyright: "© {year} Fredy Hernández · Backend Developer & Automation Engineer",
+    copyright: "© {year} Fredy Hernández · Desarrollador Backend & Ingeniero de Automatización",
     designed:
       "Diseñado bajo la directriz Sleek Interface | Servidor Cloud Run",
   },

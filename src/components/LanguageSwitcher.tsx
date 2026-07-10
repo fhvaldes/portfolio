@@ -11,7 +11,7 @@ export default function LanguageSwitcher() {
       title={language === "es" ? "Switch to English" : "Cambiar a Español"}
     >
       <Globe className="w-3.5 h-3.5" />
-      <span>{language === "es" ? "EN" : "ES"}</span>
+      <span>{language === "es" ? "ES" : "EN"}</span>
     </button>
   );
 }
